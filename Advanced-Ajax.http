@@ -1,0 +1,6 @@
+@Advanced_Ajax_HostAddress = http://localhost:5227
+
+GET {{Advanced_Ajax_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
