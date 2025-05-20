@@ -43,6 +43,7 @@ document.getElementById('PhotoUrl').value = fileName;
 });
 
 function ShowCreateModalForm() {
-    $("#DivCreateDialogHolder").modal("show");
+    var myModal = new bootstrap.Modal(document.getElementById('DivCreateDialogholder'));
+    myModal.show();
     return;
 }
