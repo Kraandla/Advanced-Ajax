@@ -65,6 +65,11 @@ namespace Advanced_Ajax.Controllers
         [HttpPost]
         public IActionResult Edit(Customer customer)
         {
+            if (customer.ProfilePhoto != null)
+            {
+                string uniqueFileName = GetProfilePhotoFileName(customer);
+                customer.PhotoUrl = uniqueFileName;
+            }
             _context.Attach(customer);
             _context.Entry(customer).State = EntityState.Modified;
             _context.SaveChanges();
