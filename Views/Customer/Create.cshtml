@@ -64,10 +64,18 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label asp-for="CityId" class="control-label"></label>
-                <select id="lstCity" asp-for="CityId" class ="form-control" asp-items="ViewBag.Cities"></select>
+            <div class="form-group btn-group col-12">
+                <div class="col-11">
+                    <label asp-for="CityId" class="control-label"></label>
+                    <select id="lstCity" asp-for="CityId" class ="form-control" asp-items="ViewBag.Cities"></select>
+                </div>
+                <div class="col-1 mt-4">
+                    <button class="btn btn-success" onclick="ShowCityCreateModal();">
+                        +
+                    </button>
+                </div>
             </div>
+
 
             <div class="col-md-12 btn-group pb-2">
 
@@ -147,15 +155,15 @@ function FillCities(lstCountryCtrl,lstCityId)
 return;
 }
 
-$(".custom-file-input").on("change", function () {
+// $(".custom-file-input").on("change", function () {
 
-        var fileName = $(this).val().split("\\").pop();
+//         var fileName = $(this).val().split("\\").pop();
 
-        document.getElementById('PreviewPhoto').src = window.URL.createObjectURL(this.files[0]);
+//         document.getElementById('PreviewPhoto').src = window.URL.createObjectURL(this.files[0]);
 
-        document.getElementById('PhotoUrl').value = fileName;
+//         document.getElementById('PhotoUrl').value = fileName;
 
-});
+// });
 
     function ShowCountryCreateModal() {
         $.ajax(
@@ -169,6 +177,21 @@ $(".custom-file-input").on("change", function () {
             });
         return;
     }
+
+    function ShowCityCreateModal() {
+    var lstCountryCtrl = document.getElementById('lstCountryId');
+    var countryId = lstCountryCtrl.options[lstCountryCtrl.selectedIndex].value;
+
+    $.ajax({
+        url: "/city/CreateModalForm?countryid=" + countryId,
+        type: 'get',
+        success: function (response) {
+            $("#DivCreateDialog").html(response);
+            ShowCreateModalForm();
+        }
+    });
+    return;
+}
 
     // function ShowCreateModalForm() {
     //     var myModal = new bootstrap.Modal(document.getElementById('DivCreateDialogholder'));
