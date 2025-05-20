@@ -41,7 +41,10 @@ namespace Advanced_Ajax.Controllers
         [HttpGet]
         public IActionResult Details(int Id)
         {
-            Customer customer = _context.Customers.Where(c => c.Id == Id).FirstOrDefault();
+            Customer customer = _context.Customers
+              .Include(cty => cty.City)
+              .Include(cou => cou.City.Country)
+              .Where(c => c.Id == Id).FirstOrDefault();
             return View(customer);
         }
 
