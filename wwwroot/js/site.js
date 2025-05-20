@@ -40,4 +40,9 @@ document.getElementById('PreviewPhoto').src = window.URL.createObjectURL(this.fi
 
 document.getElementById('PhotoUrl').value = fileName;
 
-    });
+});
+
+function ShowCreateModalForm() {
+    $("#DivCreateDialogHolder").modal("show");
+    return;
+}
